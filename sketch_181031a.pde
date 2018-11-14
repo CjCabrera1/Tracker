@@ -9,8 +9,7 @@
   // balls
 float ballx;
 float bally; 
-float xSpeed =3;
-float ySpeed =3;
+float speed =3;
 int ballWidth = 40;
 int ballHeight = 40;
 
@@ -75,8 +74,8 @@ bally = random(21, height/2);
 
     
     // if balls collide with the matchX and Match Y then collide the 2
-    ballx = ballx+xSpeed;
-    bally = bally+ySpeed;
+    ballx = ballx+speed;
+    bally = bally+speed;
     ellipse(ballx, bally, ballWidth, ballHeight);
     fill(126);
     ellipse(triggerX,triggerY,40,40);
@@ -86,19 +85,27 @@ bally = random(21, height/2);
     triggerY = random(0,360);
     }
     if(dist(matchX,matchY,ballx,bally) < 20){
-    totalP -= negPoints;
+    totalP -= points;
      
     }
     fill(255);
     text("Score:" + totalP + " Points", 20,20);
     if (ballx > width-ballWidth/2 || ballx < ballWidth/2) {
-    xSpeed = -xSpeed;
+    speed = -speed;
     }
+    
 
     if (bally < ballHeight/2 || bally > height-ballHeight/2) {
-    ySpeed = - ySpeed;
+    speed = - speed;
     }
-
+    
+    if (totalP > 100){
+     speed = 4;
+    }
+    
+    if (totalP > 200){
+     speed = 6;
+    }
   
   }// end draw
   
